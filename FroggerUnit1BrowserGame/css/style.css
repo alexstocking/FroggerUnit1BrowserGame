@@ -1,0 +1,66 @@
+body {
+    height: 100vh
+    margin: 0;
+    background-color: aqua;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.frogImg {
+    background-color: aqua;
+    mix-blend-mode: multiply;
+}
+
+
+h1 {
+    font-size: 5vmin;
+    letter-spacing: 1vmin;
+    color: green;
+
+}
+
+h2 {
+    font-size: 3vmin;
+
+}
+
+h3 {
+    font-size: 2.5vmin;
+
+}
+
+.choose-difficulty {
+    margin: 2vmin;
+    cursor: pointer;
+    font-size: 3vmin;
+
+}
+
+.grid-wrapper {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: black solid 2px;
+}
+
+.grid {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+    justify-content: center;
+    height: 70vh;
+    width: 70vw;
+}
+
+.visible {
+    display: block;
+}
+
+.hidden {
+    display: none;
+}
+
+
