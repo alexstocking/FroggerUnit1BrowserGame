@@ -6,19 +6,33 @@
     <title>Frogger</title>
     <link rel="stylesheet" href="./css/style.css">
     <script defer src="./js/app.js"></script>
+    <script defer src="./js/app2.js"></script>
 </head>
 <body>
     <header id="title-container">
-        <h1 id="title">FROGGER</h1>
+        <div id="levelCounter" style="display: none">Level: <span id="level">1</span></div>
+        <h1 id="title">FROGGER</h1> 
+        <div id="lifeCounter" style="display: none">Lives: <span id="lives">7</span></div>
     </header>
     <main id="main-container" class="visible">
         <img id="frogImg" src="https://content.mycutegraphics.com/graphics/frog/cartoon-frog-on-lily-pad.png" alt="Picture of Frogger">
-        <h2 id="explain">Help Frogger get from one side to the other!<br> Be careful on the road and don't fall into the river!</h2>
-        <h3 id="difficulty">Choose your difficulty:</h3>
-        <button id="easy" class="choose-difficulty">EASY</button><button id="medium" class="choose-difficulty">MEDIUM</button><button id="hard" class="choose-difficulty">HARD</button>
+        <h2 id="explain">Help Frogger get from one side to the other!<br> Be careful on the road and don't fall into the river!<br>Move Frogger with the W-A-S-D Keys!</h2>
+        <h3 id="difficulty">Choose your board size:</h3>
+        <section class="choose-difficulty">
+            <button id="easybtn" class="choose-difficulty">SMALL</button><button id="mediumbtn" class="choose-difficulty">MEDIUM</button><button id="hardbtn" class="choose-difficulty">LARGE</button>
+        </section>
     </main>
     <section id="board" class="grid-wrapper hidden">
-        <section id="board" class="grid"></section>
+        <section id="easyboard" class="grid hidden">
+
+        </section>
+        <section id="mediumboard" class="grid hidden">
+        
+        </section> 
+    </section> 
+    <section id="levelbuttons">
+        <button id="mainMenu" class="hidden">Back to the Main Menu</button><button id="nextlevel" class="hidden">Next Level!</button>
     </section>
 </body>
 </html>
+
