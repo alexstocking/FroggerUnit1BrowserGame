@@ -2,6 +2,7 @@ body {
     height: 100vh;
     margin: 0;
     background-color: aqua;
+    font-family: 'Silkscreen', sans-serif;
 }
 
 .visible {
@@ -36,6 +37,10 @@ h2 {
 
 h3 {
     font-size: 2.5vmin;
+}
+
+button {
+    font-family: 'Silkscreen', sans-serif;
 }
 
 .choose-difficulty {
@@ -220,12 +225,12 @@ h3 {
 }
 
 #lifeCounter {
-    font-size: 5vmin;
+    font-size: 4vmin;
     color: black;
 }
 
 #levelCounter {
-    font-size: 5vmin;
+    font-size: 4vmin;
     color: black;
 }
 
@@ -233,6 +238,10 @@ h3 {
     display: none;
 }
 
-
+label {
+    display: flex;
+    position: relative;
+    top: 0;
+}
 
 

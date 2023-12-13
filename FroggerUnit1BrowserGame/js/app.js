@@ -19,6 +19,7 @@ const mainMenuBtn = document.querySelector('#mainMenu')
 const nextLevelBtn = document.querySelector('#nextlevel')
 
 const frogEl = document.querySelector('.frog')
+const jumpSound = new Audio("./assets/jump.wav")
 
 // EVENT LISTENERS //
 easyBtn.addEventListener('click', initEasy)
@@ -52,6 +53,7 @@ let riverIntervalTimeM = 1100
 let vehicleIntervalTimeH = 1200
 let riverIntervalTimeH = 1000
 let levelDisplay = document.querySelector('#level')
+let allowMovement = true;
 
 function initEasyGrid() {
     boardHolder.removeChild(mediumBoard)
@@ -267,6 +269,7 @@ function initEasy() {
     addRiverFeaturesEasy()
     vehicleInterval = setInterval(updateVehiclePositionsEasy, vehicleIntervalTime);
     riverInterval = setInterval(updateRiverPositionsEasy, riverIntervalTime);
+    startUp.play()
 }
 
 function initMedium() {
@@ -282,6 +285,7 @@ function initMedium() {
     addRiverFeaturesMedium()
     vehicleInterval = setInterval(updateVehiclePositionsMedium, vehicleIntervalTimeM);
     riverInterval = setInterval(updateRiverPositionsMedium, riverIntervalTimeM);
+    startUp.play()
 }
 
 function initHard() {
@@ -297,6 +301,7 @@ function initHard() {
     addRiverFeaturesHard()
     vehicleInterval = setInterval(updateVehiclePositionsHard, vehicleIntervalTimeH);
     riverInterval = setInterval(updateRiverPositionsHard, riverIntervalTimeH);
+    startUp.play()
 }
 
 function newGameOrMenuEasy() {
@@ -358,6 +363,7 @@ function initLevelCounter() {
 }
 
 function handleMovement(event) {
+    if (allowMovement) {
     const key = event.keyCode
    
     const up = 87
@@ -396,6 +402,8 @@ function handleMovement(event) {
     currentPosition = newPosition;
     addFrog(currentPosition)
     handleCollision()
+    jumpSound.play()
+}
 }
 
 
@@ -454,6 +462,13 @@ function frogOnLogOrLily() {
     } 
 }
 
+function enableMovement() {
+    allowMovement = true
+}
+
+function disableMovement() {
+    allowMovement = false
+}
 
 function updateLifeCounter() {
     livesDisplay.textContent = lives;
@@ -490,6 +505,7 @@ function nextLevel() {
       }
     level++
     updateLevelCounter()
+    enableMovement()
     title.textContent = 'FROGGER'
     title.style.color = 'green'
 }
@@ -847,20 +863,45 @@ function handleCollisionAction() {
     if (lives <= 0) {
         title.textContent = 'GAME OVER!'
         title.style.color = 'red'
-        setTimeout(rtnMenu, 3000);
+        gameOverSound.play()
+        bgPlayer.pause()
+        setTimeout(rtnMenu, 4000);
     } else {
         removeFrog();
         currentPosition = startPosition;
         addFrog(currentPosition);
+        crashSound.play()
     }
 }
-
 
 function winLevel() {
     if (winner === 0) { 
         winner = 1;
         title.textContent = "Level Complete!"
-        title.style.color = "teal" }
+        title.style.color = "teal" 
+        levelup.play()
+    }
         nextLevelBtn.classList.remove('hidden');
+        disableMovement()
 }
 
+// ALL AUDIO CONTROLS //
+const bgPlayer = document.getElementById('bg-player');
+const bgCheckbox = document.querySelector('input[type="checkbox"]');
+const crashSound = new Audio('./assets/ribbit.wav')
+const gameOverSound = new Audio('./assets/gameover.wav')
+const levelup = new Audio('./assets/levelup.wav')
+const startUp = new Audio('./assets/start.wav')
+
+bgPlayer.volume = 0.1;
+jumpSound.volume = 0.1;
+crashSound.volume = 0.5;
+gameOverSound.volume = 0.5;
+levelup.volume = 0.5;
+startUp.volume = 0.5;
+
+bgCheckbox.addEventListener('change', handleBgChanged);
+
+function handleBgChanged() {
+    bgCheckbox.checked ? bgPlayer.play() : bgPlayer.pause();
+}
