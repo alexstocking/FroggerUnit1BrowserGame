@@ -85,6 +85,22 @@ h3 {
     justify-content: center;
 }
 
+#hardboard {
+    display: grid;
+    grid-template-columns: repeat(19, 1fr);
+    grid-template-rows: repeat(11, 1fr);
+    height: 100%;
+    width: 80%;
+    gap: 0;
+    margin: 0 auto;
+}
+
+#hardboard > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 
 
 .grassStart, .grassMiddle, .grassEnd {
@@ -131,7 +147,6 @@ h3 {
     border: none;
     rotate: 270deg;
     position: absolute;
-    top: 0;
     left: 0;
     width: 100%;
     height: 100px;
@@ -152,6 +167,24 @@ h3 {
     background-size: contain;
     background-position: center center;
     border: none;
+}
+
+.carOneR {
+    background-image: url('../assets/Red_Car.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+    border: none;
+    transform: rotate(180deg);
+}
+
+.carTwoR {
+    background-image: url('../assets/Yellow_Car.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+    border: none;
+    transform: rotate(180deg);
 }
 
 .truckOne {
