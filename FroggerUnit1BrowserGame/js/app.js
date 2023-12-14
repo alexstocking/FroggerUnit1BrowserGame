@@ -1,4 +1,4 @@
-// CACHED ELEMENTS //
+// ************************************************* CACHED ELEMENTS ********************************************* //
 const mainMenu = document.querySelector('#main-container')
 const boardHolder = document.querySelector('#board')
 const title = document.querySelector('#title')
@@ -21,7 +21,7 @@ const nextLevelBtn = document.querySelector('#nextlevel')
 const frogEl = document.querySelector('.frog')
 const jumpSound = new Audio("./assets/jump.wav")
 
-// EVENT LISTENERS //
+// *************************************************** EVENT LISTENERS ************************************************//
 easyBtn.addEventListener('click', initEasy)
 mediumBtn.addEventListener('click', initMedium)
 hardBtn.addEventListener('click', initHard)
@@ -30,7 +30,7 @@ nextLevelBtn.addEventListener('click', nextLevel)
 document.addEventListener('keydown', handleMovement)
 
 
-// BOARD CONFIG AND CREATION //
+// *********************************************** BOARD CONFIG AND CREATION ************************************************** //
 let easyBoard = document.querySelector('#easyboard')
 let mediumBoard = document.querySelector('#mediumboard')
 let hardBoard = document.querySelector('#hardboard')
@@ -254,7 +254,7 @@ function addHardRiver(p1, p2, p3, p4, p5, p6) {
     cells[p6].classList.add('lily')
 }
 
-// FUNCTIONS FOR STARTING AND CONTROLS //
+// **************************************** FUNCTIONS FOR STARTING AND CONTROLS *************************************** //
 
 function initEasy() {
     startPosition = 84
@@ -512,6 +512,7 @@ function nextLevel() {
 
 function rtnMenu() {
     location.reload()
+    bgPlayer.play()
     // bringUpMainMenu()
     // removeFrog()
     // currentPosition = startPosition;
@@ -532,7 +533,7 @@ function rtnMenu() {
 }
 
 
-// FUNCTIONS FOR MOVING OBSTACLES //
+// **********************************************  FUNCTIONS FOR MOVING OBSTACLES  *************************************************//
 let currentPositionCar = [77, 72, 68, 118, 112, 107, 188, 184, 180, 176, 175, 172]
 let currentPositionCarMedium = [88, 85, 83, 81, 78, 76, 151, 149, 147, 146, 145, 143, 142, 141, 140, 137, 135, 134]
 let currentPositionTrucks = [ 53, 54, 58, 59, 62, 63, 91, 92, 96, 97, 100, 101, 153, 154, 160, 161, 168, 169]
@@ -833,7 +834,7 @@ function removeHardRiver() {
     cells[positionRiverHard[5]].classList.remove('lily')
 }
 
-// FUNCTIONS FOR COLLISION AND WINNING //
+// ******************************************************* FUNCTIONS FOR COLLISION AND WINNING *****************************************************//
 function handleCollision() {
     const frogCell = cells[currentPosition];
     const isSafe = frogCell.classList.contains('log') || frogCell.classList.contains('lily')
@@ -865,6 +866,8 @@ function handleCollisionAction() {
         title.style.color = 'red'
         gameOverSound.play()
         bgPlayer.pause()
+        lifeCounter.style.display = 'none'
+        disableMovement()
         setTimeout(rtnMenu, 4000);
     } else {
         removeFrog();
@@ -885,7 +888,7 @@ function winLevel() {
         disableMovement()
 }
 
-// ALL AUDIO CONTROLS //
+// ********************************************************* ALL AUDIO CONTROLS *****************************************************//
 const bgPlayer = document.getElementById('bg-player');
 const bgCheckbox = document.querySelector('input[type="checkbox"]');
 const crashSound = new Audio('./assets/ribbit.wav')
