@@ -48,10 +48,10 @@ let vehicleInterval;
 let riverInterval;
 let vehicleIntervalTime = 1500
 let riverIntervalTime = 1200
-let vehicleIntervalTimeM = 1300
-let riverIntervalTimeM = 1100
-let vehicleIntervalTimeH = 1200
-let riverIntervalTimeH = 1000
+let vehicleIntervalTimeM = 1400
+let riverIntervalTimeM = 1200
+let vehicleIntervalTimeH = 1300
+let riverIntervalTimeH = 1200
 let levelDisplay = document.querySelector('#level')
 let allowMovement = true;
 
@@ -485,12 +485,12 @@ function nextLevel() {
     addFrog(currentPosition)
     winner = 0
     nextLevelBtn.classList.add('hidden');
-    vehicleIntervalTime -= 70
-    riverIntervalTime -= 70
-    vehicleIntervalTimeM -= 80
-    riverIntervalTimeM -= 80
-    vehicleIntervalTimeH -= 90
-    riverIntervalTimeH -= 90
+    vehicleIntervalTime -= 100
+    riverIntervalTime -= 100
+    vehicleIntervalTimeM -= 100
+    riverIntervalTimeM -= 100
+    vehicleIntervalTimeH -= 100
+    riverIntervalTimeH -= 100
     clearInterval(vehicleInterval)
     clearInterval(riverInterval)
     if (boardHolder.classList.contains('easyboardgen')) {
@@ -878,14 +878,23 @@ function handleCollisionAction() {
 }
 
 function winLevel() {
-    if (winner === 0) { 
-        winner = 1;
-        title.textContent = "Level Complete!"
-        title.style.color = "teal" 
-        levelup.play()
+    if (winner === 0) {
+        if (level <= 9) { 
+            winner = 1;
+            title.textContent = "Level Complete!"
+            title.style.color = "teal" 
+            levelup.play()
+            nextLevelBtn.classList.remove('hidden');
+        }
     }
-        nextLevelBtn.classList.remove('hidden');
-        disableMovement()
+        if (level > 9) {
+            title.textContent = "Board Complete!"
+            title.style.color = "teal"
+            nextLevelBtn.classList.add('hidden')
+            setTimeout(rtnMenu, 6500)
+            boardClear.play() 
+    }
+    disableMovement()
 }
 
 // ********************************************************* ALL AUDIO CONTROLS *****************************************************//
@@ -895,6 +904,7 @@ const crashSound = new Audio('./assets/ribbit.wav')
 const gameOverSound = new Audio('./assets/gameover.wav')
 const levelup = new Audio('./assets/levelup.wav')
 const startUp = new Audio('./assets/start.wav')
+const boardClear = new Audio('./assets/boardclear.wav')
 
 bgPlayer.volume = 0.1;
 jumpSound.volume = 0.1;
@@ -902,6 +912,7 @@ crashSound.volume = 0.5;
 gameOverSound.volume = 0.5;
 levelup.volume = 0.5;
 startUp.volume = 0.5;
+boardClear.volume = 0.5;
 
 bgCheckbox.addEventListener('change', handleBgChanged);
 
