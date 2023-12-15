@@ -900,10 +900,10 @@ function winLevel() {
 const bgPlayer = document.getElementById('bg-player');
 const bgCheckbox = document.querySelector('input[type="checkbox"]');
 const crashSound = new Audio('./assets/ribbit.wav')
-const gameOverSound = new Audio('./assets/gameover.wav')
+const gameOverSound = new Audio('./assets/GameOver.wav')
 const levelup = new Audio('./assets/levelup.wav')
 const startUp = new Audio('./assets/start.wav')
-const boardClear = new Audio('./assets/boardclear.wav')
+const boardClear = new Audio('./assets/Boardclear.wav')
 
 bgPlayer.volume = 0.1;
 jumpSound.volume = 0.1;
