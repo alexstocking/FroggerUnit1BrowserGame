@@ -512,7 +512,6 @@ function nextLevel() {
 
 function rtnMenu() {
     location.reload()
-    bgPlayer.play()
     // bringUpMainMenu()
     // removeFrog()
     // currentPosition = startPosition;
